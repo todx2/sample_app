@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   get  '/signup',  to: 'users#new'
 
-
+  
   #get 'users/new'
 
   #get 'static_pages/home'
@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
+
+  #added to see user/1 from browser but needs more
+  resources :users
 
 
 end
