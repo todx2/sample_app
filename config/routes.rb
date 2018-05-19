@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'sessions/new'
+
   get  '/signup',  to: 'users#new'
 
   
@@ -22,6 +24,14 @@ Rails.application.routes.draw do
   get  '/contact', to: 'static_pages#contact'
 
   #added to see user/1 from browser but needs more
+
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+
+
+
+
   resources :users
 
 
