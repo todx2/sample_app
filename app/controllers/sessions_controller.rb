@@ -10,8 +10,9 @@ class SessionsController < ApplicationController
              remember user
              params[:session][:remember_me] == '1' ? remember(user) : forget(user)
 
-             
-             redirect_to user
+             #may 19 2018
+              redirect_back_or user
+             #redirect_to user
 
 
       # Log the user in and redirect to the user's show page.
