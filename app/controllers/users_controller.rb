@@ -18,7 +18,10 @@ class UsersController < ApplicationController
 
   def index
    #@users = User.all
-    @users = User.paginate(page: params[:page])
+   # @users = User.paginate(page: params[:page])
+
+   #ted may 23 2018  true FILLED IN
+   @users = User.where(activated: true).paginate(page: params[:page])
   end 
 
  
@@ -32,6 +35,11 @@ def new
   #may 17 2018--to show email at /users/1 via the browser
   def show
     @user = User.find(params[:id])
+    
+    #may 23 2018       FILLED IN
+    redirect_to root_url and return unless @user.activated?
+
+
     #nice debudder--lik ende c code  ctrl+d makes it run again--ted
     #debugger
   end
@@ -41,11 +49,24 @@ def new
     @user = User.new(user_params)   #xyz
    # @user = User.new(params[:user])    # Not the final implementation!
     if @user.save
-      log_in @user
+     #ted may 23 2018
+      @user.send_activation_email
+
+      #ted may 23 2018
+      #UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
+      #ted may 23 2018
+
+     
+
+
+
+      #log_in @user
       # Handle a successful save.
       #added  
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      #flash[:success] = "Welcome to the Sample App!"
+      #redirect_to @user
 
     else
       render 'new'

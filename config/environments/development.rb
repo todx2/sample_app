@@ -26,8 +26,22 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+
+#ted  may 22 2018
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :test
+  host = 'localhost:3000'                     # Local server
+  #host = 'example.com' # Don't use this literally; use your local dev host instead
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+ #ted    may 22 2018
+
+
+
+
+
 
   config.action_mailer.perform_caching = false
 

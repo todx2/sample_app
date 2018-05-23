@@ -88,10 +88,11 @@ class UserTest < ActiveSupport::TestCase
   end
   #may 19 2018 nypl--chrome and firefox scenario
    test "authenticated? should return false for a user with nil digest" do
-    assert_not @user.authenticated?('')
-  end
+     # assert_not @user.authenticated?('')
+     #may 23 2018
+       assert_not @user.authenticated?(:remember, '')
+   end
 
-
-
+  
 
 end
