@@ -25,3 +25,5 @@
 # Ignore Spring files.  
 #may 16 2018
 /spring/*.pid
+
+config/environments/production.rb
